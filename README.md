@@ -11,7 +11,6 @@ npm run dev
 ````
 
 ## Setup
-1. mv config.js.copy config.js
-2. Edit the jwt secret key in config.js
-3. Edit the db path in /server/db/mongoose.js
-4. And set up the api! There are some good old todos as an example.
+1. Rename config.js.copy to config.js and edit the jwt secret key. (Config.js is in the gitignore).
+2. Edit the db path in /server/db/mongoose.js
+3. And set up the api! There are some good old todos as an example.
