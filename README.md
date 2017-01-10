@@ -15,5 +15,3 @@ npm run dev
 2. Edit the jwt secret key in config.js
 3. Edit the db path in /server/db/mongoose.js
 4. And set up the api! There are some good old todos as an example.
-
-## Todo
