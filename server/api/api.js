@@ -1,6 +1,6 @@
 let api = (app, mongoose) => {
   let {userApi} = require('./userApi'),
-  let {todoApi} = require('./todoApi');
+        {todoApi} = require('./todoApi');
 
   userApi(app, mongoose);
   todoApi(app, mongoose);
