@@ -1,0 +1,14 @@
+let api = (app, mongoose) => {
+  let {userApi} = require('./userApi'),
+  let {todoApi} = require('./todoApi');
+
+  userApi(app, mongoose);
+  todoApi(app, mongoose);
+
+  // quick test
+  app.get('/api', (req, res) => {
+    res.send({'message': 'API is alive'});
+  });
+};
+
+module.exports = {api};

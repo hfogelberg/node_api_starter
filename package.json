@@ -1,22 +1,32 @@
 {
-  "name": "node-api-starter",
+  "name": "node_api_starter",
   "version": "1.0.0",
-  "description": "Starter kit to build and api with jwt authentication",
-  "main": "server/server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./server/server.js --watch",
+    "dev": "nodemon ./index.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["Node JS", "Express", "MogoDB", "API" ],
+  "keywords": [
+    "Node JS",
+    "Express",
+    "MogoDB",
+    "API"
+  ],
   "author": "henrik.fogelberg@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
-    "crypto-js": "^3.1.9-1",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.2.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.6",
+    "port": "^0.8.1",
     "validator": "^6.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

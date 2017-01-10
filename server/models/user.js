@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'),
       validator = require('validator'),
       bcrypt = require('bcryptjs'),
+      {HASH_SECRET} = require('../../config.js'),
       jwt = require('jsonwebtoken');
 
 

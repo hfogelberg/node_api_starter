@@ -1,4 +1,4 @@
-let {User} = require('../../models/user');
+let {User} = require('../models/user');
 
 let authenticate = (req, res, next) =>{
   console.log('authenticate');
