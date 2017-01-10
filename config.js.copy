@@ -1,0 +1,3 @@
+module.exports = Object.freeze({
+  HASH_SECRET: my_sercret_key
+})
