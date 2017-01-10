@@ -4,11 +4,11 @@
   "description": "Starter kit to build and api with jwt authentication",
   "main": "server/server.js",
   "scripts": {
-    "dev": "nodemon ./server.js --watch",
+    "dev": "nodemon ./server/server.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Node JS", "Express", "MogoDB", "API" ],
+  "author": "henrik.fogelberg@gmail.com",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",

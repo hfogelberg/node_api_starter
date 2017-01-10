@@ -8,6 +8,7 @@ let express = require('express'),
           {HASH_SECRET} = require('../config'),
           {authenticate} = require('./middleware/authenticate'),
           {mongoose} = require('./db/mongoose'),
+          {errLogger} = require('./logger/errLogger'),
           {User} = require('../models/user'),
           {Todo} = require('../models/todo');
 
@@ -43,10 +44,10 @@ app.post('/api/users/login', (req, res) => {
            });
          })
          .catch((e) => {
-           console.log('Error returning token ', e);
-           res.status(400).send();
+           errLogger(e)
+            .then(() => {res.status(400).send();})
+            .catch(()=>{console.log('Cannot write to log file');});
          });
-
 });
 
 // sign up
@@ -59,8 +60,11 @@ app.post('/api/users', (req, res)=>{
   }).then((token) => {
     res.header('x-auth', token).send(user);
   }).catch((e) => {
-    res.status(400).send(e);
-  });
+    errLogger(e)
+     .then(() => {res.status(400).send();})
+     .catch(()=>{console.log('Cannot write to log file');
+    });
+   });
 });
 
 // private route
@@ -83,9 +87,11 @@ app.post('/api/todos', authenticate, (req, res) => {
             res.send({status: 'OK', body: doc})
           })
           .catch((e) => {
-            console.log('ERROR', e);
-            res.status(404).send();
-          });
+            errLogger(e)
+             .then(() => {res.status(400).send();})
+             .catch(()=>{console.log('Cannot write to log file');
+            });
+        });
 });
 
 app.get('/api/todos', authenticate, (req, res) => {
@@ -94,8 +100,10 @@ app.get('/api/todos', authenticate, (req, res) => {
           res.send({status: 'OK', body: doc})
         })
         .catch( (e)=>{
-          console.log('ERROR', e);
-          res.status(404).send();
+          errLogger(e)
+           .then(() => {res.status(400).send();})
+           .catch(()=>{console.log('Cannot write to log file');
+          });
         });
 });
 
@@ -107,8 +115,10 @@ app.get('/api/todos/:id', (req, res) => {
         res.send({status: 'OK', body: doc});
       })
       .catch((e)=>{
-        console.log('ERROR', e);
-        res.status(404).send();
+        errLogger(e)
+         .then(() => {res.status(400).send();})
+         .catch(()=>{console.log('Cannot write to log file');
+        });
       });
 });
 
@@ -120,8 +130,10 @@ app.delete('/api/todos/:id', (req, res) => {
         res.send({status: 'OK'});
       })
       .catch( (e)=>{
-        console.log('ERROR', e);
-        res.status(404).send();
+        errLogger(e)
+         .then(() => {res.status(400).send();})
+         .catch(()=>{console.log('Cannot write to log file');
+        });
       });
 });
 
@@ -130,7 +142,7 @@ app.post('/api/todos/:id/edit', (req, res)=>{
   let body = _.pick(req.body, ['message', 'completed']);
   console.log(body);
 
-  if(body.completed == 'true' || body.completed == true) {
+  if (body.completed == 'true' || body.completed == true) {
     body.completedAt = new Date().getTime();
     body.completed = true;
   } else {
@@ -149,7 +161,10 @@ app.post('/api/todos/:id/edit', (req, res)=>{
         res.send({status: 'OK', body: todo});
       })
       .catch((e)=>{
-        res.status(400).send
+        errLogger(e)
+         .then(() => {res.status(400).send();})
+         .catch(()=>{console.log('Cannot write to log file');
+        });
       });
 });
 
